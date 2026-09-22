@@ -1,0 +1,234 @@
+@import "tailwindcss";
+
+/* ============================================================
+   🎨 THEME TOKENS
+   ============================================================ */
+@theme {
+  /* 🖤 DEEP BLACKS */
+  --color-void: #030308;
+  --color-abyss: #070714;
+  --color-charcoal: #0d0d1f;
+  --color-slate-deep: #15152e;
+
+  /* 🌊 MIDNIGHT BLUES */
+  --color-midnight: #0A1F44;
+  --color-navy: #0F1E3D;
+  --color-navy-light: #1E3A8A;
+  --color-navy-deep: #1a1a4a;
+
+  /* ⚡ NEON ELECTRIC */
+  --color-neon: #00D9FF;
+  --color-neon-light: #5CE1FF;
+  --color-neon-dark: #0099CC;
+
+  /* 💙 ELECTRIC */
+  --color-electric: #38BDF8;
+  --color-electric-light: #7DD3FC;
+  --color-electric-dark: #0EA5E9;
+
+  /* 🔷 STEEL */
+  --color-steel: #60A5FA;
+}
+
+/* ============================================================
+   🌈 BACKGROUND GRADIENTS
+   ============================================================ */
+@utility gradient-hero {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(15, 30, 61, 0.6) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(8, 18, 43, 0.5) 0%, transparent 70%),
+    radial-gradient(ellipse 100% 80% at 50% 50%, rgba(30, 58, 138, 0.15) 0%, transparent 60%),
+    #030308;
+}
+
+@utility gradient-neon {
+  background: linear-gradient(135deg, #0099CC 0%, #00D9FF 50%, #5CE1FF 100%);
+}
+
+@utility gradient-electric {
+  background: linear-gradient(135deg, #0EA5E9 0%, #38BDF8 50%, #7DD3FC 100%);
+}
+
+@utility gradient-navy {
+  background: linear-gradient(135deg, #08122B 0%, #0F1E3D 50%, #1E3A8A 100%);
+}
+
+/* ============================================================
+   ✨ TEXT GRADIENTS
+   ============================================================ */
+@utility text-gradient-neon {
+  background: linear-gradient(135deg, #00D9FF 0%, #5CE1FF 50%, #00D9FF 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@utility text-gradient-electric {
+  background: linear-gradient(135deg, #38BDF8 0%, #7DD3FC 50%, #38BDF8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@utility text-gradient-steel {
+  background: linear-gradient(135deg, #60A5FA 0%, #38BDF8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ============================================================
+   🌫️ GLASSMORPHISM
+   ============================================================ */
+@utility glass {
+  background: rgba(15, 30, 61, 0.25);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(96, 165, 250, 0.1);
+}
+
+@utility glass-electric {
+  background: rgba(56, 189, 248, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+}
+
+@utility glass-navy {
+  background: rgba(15, 30, 61, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(30, 58, 138, 0.4);
+}
+
+/* ============================================================
+   ⚡ BASE GLOWS (no hover - can be used directly)
+   ============================================================ */
+@utility glow-neon {
+  box-shadow: 0 0 5px rgba(0, 217, 255, 0.6), 0 0 15px rgba(0, 217, 255, 0.4), 0 0 30px rgba(0, 217, 255, 0.25), 0 0 60px rgba(0, 217, 255, 0.1);
+}
+
+@utility glow-neon-strong {
+  box-shadow: 0 0 8px rgba(0, 217, 255, 0.9), 0 0 20px rgba(0, 217, 255, 0.7), 0 0 40px rgba(0, 217, 255, 0.4), 0 0 80px rgba(0, 217, 255, 0.2), 0 0 120px rgba(0, 217, 255, 0.1);
+}
+
+@utility glow-electric {
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.4), 0 0 40px rgba(56, 189, 248, 0.2);
+}
+
+@utility glow-electric-soft {
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+}
+
+@utility glow-navy {
+  box-shadow: 0 0 20px rgba(30, 58, 138, 0.5), 0 0 40px rgba(30, 58, 138, 0.3);
+}
+
+/* ============================================================
+   🎯 HOVER GLOWS — Tailwind v4 custom utility + :hover
+   ============================================================ */
+@utility hover-glow-neon {
+  &:hover {
+    box-shadow: 0 0 5px rgba(0, 217, 255, 0.6), 0 0 15px rgba(0, 217, 255, 0.4), 0 0 30px rgba(0, 217, 255, 0.25), 0 0 60px rgba(0, 217, 255, 0.1);
+  }
+}
+
+@utility hover-glow-neon-strong {
+  &:hover {
+    box-shadow: 0 0 8px rgba(0, 217, 255, 0.9), 0 0 20px rgba(0, 217, 255, 0.7), 0 0 40px rgba(0, 217, 255, 0.4), 0 0 80px rgba(0, 217, 255, 0.2), 0 0 120px rgba(0, 217, 255, 0.1);
+  }
+}
+
+@utility hover-glow-electric {
+  &:hover {
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.4), 0 0 40px rgba(56, 189, 248, 0.2);
+  }
+}
+
+@utility hover-glow-electric-soft {
+  &:hover {
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+  }
+}
+
+@utility hover-glow-navy {
+  &:hover {
+    box-shadow: 0 0 20px rgba(30, 58, 138, 0.6), 0 0 40px rgba(30, 58, 138, 0.3);
+  }
+}
+
+/* ============================================================
+   🔤 NEON TEXT GLOW
+   ============================================================ */
+@utility text-glow-neon {
+  text-shadow:
+    0 0 5px rgba(0, 217, 255, 0.8),
+    0 0 10px rgba(0, 217, 255, 0.6),
+    0 0 20px rgba(0, 217, 255, 0.4),
+    0 0 40px rgba(0, 217, 255, 0.2);
+}
+
+@utility text-glow-white {
+  text-shadow:
+    0 0 10px rgba(0, 217, 255, 0.5),
+    0 0 20px rgba(0, 217, 255, 0.35),
+    0 0 40px rgba(0, 217, 255, 0.2);
+}
+
+@utility text-glow-neon-soft {
+  text-shadow:
+    0 0 8px rgba(0, 217, 255, 0.5),
+    0 0 16px rgba(0, 217, 255, 0.3);
+}
+
+/* ============================================================
+   💡 NEON BORDER
+   ============================================================ */
+@utility border-neon {
+  border: 1px solid rgba(0, 217, 255, 0.5);
+  box-shadow:
+    inset 0 0 10px rgba(0, 217, 255, 0.15),
+    0 0 15px rgba(0, 217, 255, 0.3);
+}
+
+/* ============================================================
+   🔤 MONO FONT
+   ============================================================ */
+@utility font-mono-tech {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+/* ============================================================
+   🌊 FLOATING PARTICLES ANIMATION
+   ============================================================ */
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) translateX(20px);
+    opacity: 0;
+  }
+}
+
+/* ============================================================
+   🎬 GLOBAL BASE STYLES
+   ============================================================ */
+body {
+  background-color: var(--color-void);
+  color: #E5E7EB;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: rgba(0, 217, 255, 0.3);
+  color: #FFFFFF;
+}
