@@ -1,194 +1,198 @@
 @import "tailwindcss";
 
 /* ============================================================
-   🎨 THEME TOKENS
+   🎨 THEME TOKENS — Calm Professional
    ============================================================ */
 @theme {
   /* 🖤 DEEP BLACKS */
-  --color-void: #030308;
-  --color-abyss: #070714;
-  --color-charcoal: #0d0d1f;
-  --color-slate-deep: #15152e;
+  --color-void: #050510;
+  --color-abyss: #0a0a18;
+  --color-charcoal: #12121f;
+  --color-slate-deep: #1a1a2e;
 
   /* 🌊 MIDNIGHT BLUES */
-  --color-midnight: #0A1F44;
-  --color-navy: #0F1E3D;
-  --color-navy-light: #1E3A8A;
+  --color-midnight: #0a1a35;
+  --color-navy: #0f1e3d;
+  --color-navy-light: #1e3a8a;
   --color-navy-deep: #1a1a4a;
 
-  /* ⚡ NEON ELECTRIC */
-  --color-neon: #00D9FF;
-  --color-neon-light: #5CE1FF;
-  --color-neon-dark: #0099CC;
+  /* ⚡ PRIMARY ACCENT — kept */
+  --color-neon: #00d9ff;
+  --color-neon-light: #5ce1ff;
+  --color-neon-dark: #0099cc;
 
-  /* 💙 ELECTRIC */
-  --color-electric: #38BDF8;
-  --color-electric-light: #7DD3FC;
-  --color-electric-dark: #0EA5E9;
+  /* 💙 SECONDARY ACCENT — kept */
+  --color-electric: #38bdf8;
+  --color-electric-light: #7dd3fc;
+  --color-electric-dark: #0ea5e9;
 
-  /* 🔷 STEEL */
-  --color-steel: #60A5FA;
+  /* 🔷 STEEL — kept for compatibility, but used sparingly */
+  --color-steel: #60a5fa;
 }
 
 /* ============================================================
-   🌈 BACKGROUND GRADIENTS
+   🌈 BACKGROUND — Cleaner, simpler
    ============================================================ */
 @utility gradient-hero {
   background:
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(15, 30, 61, 0.6) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(8, 18, 43, 0.5) 0%, transparent 70%),
-    radial-gradient(ellipse 100% 80% at 50% 50%, rgba(30, 58, 138, 0.15) 0%, transparent 60%),
-    #030308;
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(15, 30, 61, 0.5) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 50% 100%, rgba(10, 26, 53, 0.4) 0%, transparent 70%),
+    #050510;
 }
 
 @utility gradient-neon {
-  background: linear-gradient(135deg, #0099CC 0%, #00D9FF 50%, #5CE1FF 100%);
+  background: linear-gradient(135deg, #0099cc 0%, #00d9ff 100%);
 }
 
 @utility gradient-electric {
-  background: linear-gradient(135deg, #0EA5E9 0%, #38BDF8 50%, #7DD3FC 100%);
-}
-
-@utility gradient-navy {
-  background: linear-gradient(135deg, #08122B 0%, #0F1E3D 50%, #1E3A8A 100%);
+  background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
 }
 
 /* ============================================================
    ✨ TEXT GRADIENTS
    ============================================================ */
 @utility text-gradient-neon {
-  background: linear-gradient(135deg, #00D9FF 0%, #5CE1FF 50%, #00D9FF 100%);
+  background: linear-gradient(135deg, #00d9ff 0%, #5ce1ff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 @utility text-gradient-electric {
-  background: linear-gradient(135deg, #38BDF8 0%, #7DD3FC 50%, #38BDF8 100%);
+  background: linear-gradient(135deg, #38bdf8 0%, #7dd3fc 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 @utility text-gradient-steel {
-  background: linear-gradient(135deg, #60A5FA 0%, #38BDF8 100%);
+  background: linear-gradient(135deg, #60a5fa 0%, #38bdf8 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 /* ============================================================
-   🌫️ GLASSMORPHISM
+   🌫️ GLASSMORPHISM — Slightly cleaner
    ============================================================ */
 @utility glass {
-  background: rgba(15, 30, 61, 0.25);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(15, 30, 61, 0.3);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(96, 165, 250, 0.1);
 }
 
 @utility glass-electric {
-  background: rgba(56, 189, 248, 0.05);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(56, 189, 248, 0.25);
+  background: rgba(56, 189, 248, 0.04);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(56, 189, 248, 0.15);
 }
 
 @utility glass-navy {
-  background: rgba(15, 30, 61, 0.4);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(30, 58, 138, 0.4);
+  background: rgba(15, 30, 61, 0.5);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(30, 58, 138, 0.3);
 }
 
 /* ============================================================
-   ⚡ BASE GLOWS (no hover - can be used directly)
+   ⚡ BASE GLOWS — Softened ~50%
    ============================================================ */
 @utility glow-neon {
-  box-shadow: 0 0 5px rgba(0, 217, 255, 0.6), 0 0 15px rgba(0, 217, 255, 0.4), 0 0 30px rgba(0, 217, 255, 0.25), 0 0 60px rgba(0, 217, 255, 0.1);
+  box-shadow:
+    0 0 8px rgba(0, 217, 255, 0.35),
+    0 0 20px rgba(0, 217, 255, 0.15);
 }
 
 @utility glow-neon-strong {
-  box-shadow: 0 0 8px rgba(0, 217, 255, 0.9), 0 0 20px rgba(0, 217, 255, 0.7), 0 0 40px rgba(0, 217, 255, 0.4), 0 0 80px rgba(0, 217, 255, 0.2), 0 0 120px rgba(0, 217, 255, 0.1);
+  box-shadow:
+    0 0 10px rgba(0, 217, 255, 0.5),
+    0 0 30px rgba(0, 217, 255, 0.25);
 }
 
 @utility glow-electric {
-  box-shadow: 0 0 20px rgba(56, 189, 248, 0.4), 0 0 40px rgba(56, 189, 248, 0.2);
+  box-shadow:
+    0 0 8px rgba(56, 189, 248, 0.35),
+    0 0 20px rgba(56, 189, 248, 0.15);
 }
 
 @utility glow-electric-soft {
-  box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
 }
 
 @utility glow-navy {
-  box-shadow: 0 0 20px rgba(30, 58, 138, 0.5), 0 0 40px rgba(30, 58, 138, 0.3);
+  box-shadow:
+    0 0 8px rgba(30, 58, 138, 0.4),
+    0 0 20px rgba(30, 58, 138, 0.2);
 }
 
 /* ============================================================
-   🎯 HOVER GLOWS — Tailwind v4 custom utility + :hover
+   🎯 HOVER GLOWS — Softened
    ============================================================ */
 @utility hover-glow-neon {
   &:hover {
-    box-shadow: 0 0 5px rgba(0, 217, 255, 0.6), 0 0 15px rgba(0, 217, 255, 0.4), 0 0 30px rgba(0, 217, 255, 0.25), 0 0 60px rgba(0, 217, 255, 0.1);
+    box-shadow:
+      0 0 8px rgba(0, 217, 255, 0.35),
+      0 0 20px rgba(0, 217, 255, 0.15);
   }
 }
 
 @utility hover-glow-neon-strong {
   &:hover {
-    box-shadow: 0 0 8px rgba(0, 217, 255, 0.9), 0 0 20px rgba(0, 217, 255, 0.7), 0 0 40px rgba(0, 217, 255, 0.4), 0 0 80px rgba(0, 217, 255, 0.2), 0 0 120px rgba(0, 217, 255, 0.1);
+    box-shadow:
+      0 0 10px rgba(0, 217, 255, 0.5),
+      0 0 30px rgba(0, 217, 255, 0.25);
   }
 }
 
 @utility hover-glow-electric {
   &:hover {
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.4), 0 0 40px rgba(56, 189, 248, 0.2);
+    box-shadow:
+      0 0 8px rgba(56, 189, 248, 0.35),
+      0 0 20px rgba(56, 189, 248, 0.15);
   }
 }
 
 @utility hover-glow-electric-soft {
   &:hover {
-    box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
   }
 }
 
 @utility hover-glow-navy {
   &:hover {
-    box-shadow: 0 0 20px rgba(30, 58, 138, 0.6), 0 0 40px rgba(30, 58, 138, 0.3);
+    box-shadow:
+      0 0 8px rgba(30, 58, 138, 0.4),
+      0 0 20px rgba(30, 58, 138, 0.2);
   }
 }
 
 /* ============================================================
-   🔤 NEON TEXT GLOW
+   🔤 TEXT GLOW — Subtle, professional
    ============================================================ */
 @utility text-glow-neon {
   text-shadow:
-    0 0 5px rgba(0, 217, 255, 0.8),
-    0 0 10px rgba(0, 217, 255, 0.6),
-    0 0 20px rgba(0, 217, 255, 0.4),
-    0 0 40px rgba(0, 217, 255, 0.2);
+    0 0 8px rgba(0, 217, 255, 0.35),
+    0 0 20px rgba(0, 217, 255, 0.15);
+}
+
+@utility text-glow-neon-soft {
+  text-shadow: 0 0 12px rgba(0, 217, 255, 0.25);
 }
 
 @utility text-glow-white {
   text-shadow:
-    0 0 10px rgba(0, 217, 255, 0.5),
-    0 0 20px rgba(0, 217, 255, 0.35),
-    0 0 40px rgba(0, 217, 255, 0.2);
-}
-
-@utility text-glow-neon-soft {
-  text-shadow:
-    0 0 8px rgba(0, 217, 255, 0.5),
-    0 0 16px rgba(0, 217, 255, 0.3);
+    0 0 12px rgba(0, 217, 255, 0.25),
+    0 0 25px rgba(0, 217, 255, 0.1);
 }
 
 /* ============================================================
-   💡 NEON BORDER
+   💡 BORDER — Softer
    ============================================================ */
 @utility border-neon {
-  border: 1px solid rgba(0, 217, 255, 0.5);
-  box-shadow:
-    inset 0 0 10px rgba(0, 217, 255, 0.15),
-    0 0 15px rgba(0, 217, 255, 0.3);
+  border: 1px solid rgba(0, 217, 255, 0.35);
+  box-shadow: 0 0 12px rgba(0, 217, 255, 0.15);
 }
 
 /* ============================================================
@@ -199,23 +203,11 @@
 }
 
 /* ============================================================
-   🌊 FLOATING PARTICLES ANIMATION
+   🌊 SUBTLE FADE-IN (replaces floatUp particles)
    ============================================================ */
-@keyframes floatUp {
-  0% {
-    transform: translateY(0) translateX(0);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100px) translateX(20px);
-    opacity: 0;
-  }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ============================================================
@@ -223,12 +215,12 @@
    ============================================================ */
 body {
   background-color: var(--color-void);
-  color: #E5E7EB;
+  color: #e5e7eb;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background-color: rgba(0, 217, 255, 0.3);
-  color: #FFFFFF;
+  background-color: rgba(0, 217, 255, 0.25);
+  color: #ffffff;
 }

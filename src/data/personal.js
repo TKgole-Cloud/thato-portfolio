@@ -4,17 +4,16 @@ export const personal = {
   lastName: "Kgole",
   initials: "TK",
   roles: [
-    "Cloud Engineer",
-    "DevOps Engineer",
+    "Cloud & DevOps Engineer",
     "Cloud Security Engineer",
-    
+    "Azure Infrastructure Engineer",
   ],
-  tagline: "Building secure, scalable cloud infrastructure on Microsoft Azure.",
+  tagline:
+    "I build, automate, and secure cloud infrastructure on Microsoft Azure using Terraform, Docker, Kubernetes, GitHub Actions, and Azure security services.",
   email: "zembecloudcomputing@gmail.com",
   phone: "+27 66 231 1146",
   location: "South Africa",
   resumeUrl: "/Thato_Kgole_Resume.pdf",
-  resumeLastUpdated: "September 2026",
   socials: [
     { name: "GitHub", href: "https://github.com/TKgole-Cloud", icon: "⚡" },
     { name: "LinkedIn", href: "https://linkedin.com/in/zembe-cloud", icon: "💼" },

@@ -78,10 +78,10 @@ export default function About() {
               variants={itemVariants}
               className="lg:col-span-3 glass rounded-2xl p-8 md:p-10"
             >
-              <h3 className="text-2xl font-bold text-neon mb-6 flex items-center gap-3">
-                <span className="text-electric font-mono-tech text-lg">01.</span>
-                Who I Am
-              </h3>
+                <h3 className="text-2xl font-bold text-neon mb-6 flex items-center gap-3">
+                  <span className="text-electric font-mono-tech text-lg">01.</span>
+                  About Me
+                </h3>
               <p className="text-electric text-lg mb-6 leading-relaxed font-medium">
                 {about.intro}
               </p>

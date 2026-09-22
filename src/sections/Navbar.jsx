@@ -1,26 +1,30 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { personal } from "../data/personal";
 
 const navLinks = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
-  { name: "Certifications", href: "#certifications" },
+  { name: "Skills", href: "#skills" },
   { name: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
+  /* Track scroll for glass effect */
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  /* 🚫 Prevent body scroll when menu is open */
+  /* Lock body scroll when mobile menu is open */
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => {
@@ -28,25 +32,56 @@ export default function Navbar() {
     };
   }, [mobileOpen]);
 
-  const closeMenu = () => setMobileOpen(false);
+  /* 🎯 Handle nav click — works from anywhere */
+  const handleNavClick = (e, hash) => {
+    e.preventDefault();
+    setMobileOpen(false);
+
+    // If already on home page → smooth scroll directly
+    if (location.pathname === "/") {
+      const el = document.querySelector(hash);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    } else {
+      // On another page → go home first, then scroll to hash
+      navigate("/" + hash);
+    }
+  };
+
+  /* 🎯 When arriving on home page with a hash, auto-scroll */
+  useEffect(() => {
+    if (location.pathname === "/" && location.hash) {
+      const el = document.querySelector(location.hash);
+      if (el) {
+        // Small delay so the page has rendered
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 100);
+      }
+    }
+  }, [location.pathname, location.hash]);
 
   return (
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? "glass-navy py-3" : "py-5 bg-transparent"
+          scrolled
+            ? "glass-navy py-3 border-b border-electric/10"
+            : "py-5 bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-8 flex items-center justify-between">
 
           {/* 💡 Logo */}
-          <a
-            href="#home"
-            className="text-2xl font-bold text-neon text-glow-neon-soft tracking-tight z-50 relative"
-            onClick={closeMenu}
+          <Link
+            to="/"
+            onClick={(e) => handleNavClick(e, "#home")}
+            className="text-xl font-bold text-white tracking-tight z-50 relative hover:text-neon transition-colors duration-300"
           >
-            TK<span className="text-electric">.</span>
-          </a>
+            {personal.initials}
+            <span className="text-neon">.</span>
+          </Link>
 
           {/* 🎯 Desktop Nav */}
           <ul className="hidden md:flex items-center gap-8">
@@ -54,13 +89,29 @@ export default function Navbar() {
               <li key={link.name}>
                 <a
                   href={link.href}
-                  className="text-gray-300 hover:text-neon text-sm font-medium transition-colors duration-200"
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="text-gray-400 hover:text-white text-sm font-medium transition-colors duration-200 cursor-pointer"
                 >
                   {link.name}
                 </a>
               </li>
             ))}
           </ul>
+
+          {/* 📄 Download CV — desktop */}
+          <a
+            href={personal.resumeUrl}
+            download
+            className="
+              hidden md:inline-flex items-center gap-2
+              px-4 py-2 rounded-full
+              border border-neon/40 text-neon text-sm font-medium
+              hover-glow-neon hover:border-neon
+              transition-all duration-300
+            "
+          >
+            Download CV
+          </a>
 
           {/* 📱 Mobile Menu Toggle */}
           <button
@@ -87,40 +138,50 @@ export default function Navbar() {
               bg-void/95 backdrop-blur-xl
               flex flex-col items-center justify-center
             "
-            onClick={closeMenu}
           >
-            <ul className="flex flex-col items-center gap-8">
+            <ul className="flex flex-col items-center gap-6">
               {navLinks.map((link, i) => (
                 <motion.li
                   key={link.name}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.05 * i, duration: 0.3 }}
+                  transition={{ delay: 0.05 * i, duration: 0.25 }}
                 >
                   <a
                     href={link.href}
-                    onClick={closeMenu}
+                    onClick={(e) => handleNavClick(e, link.href)}
                     className="
-                      text-3xl font-bold text-white
-                      hover:text-neon hover:text-glow-neon-soft
-                      transition-all duration-300
+                      text-2xl font-bold text-white
+                      hover:text-neon
+                      transition-colors duration-300
+                      cursor-pointer
                     "
                   >
                     {link.name}
                   </a>
                 </motion.li>
               ))}
-            </ul>
 
-            {/* ⚡ Footer note */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="absolute bottom-10 text-xs font-mono-tech text-gray-600"
-            >
-              <span className="text-neon">$</span> navigate --menu
-            </motion.p>
+              <motion.li
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.05 * navLinks.length, duration: 0.25 }}
+              >
+                <a
+                  href={personal.resumeUrl}
+                  download
+                  onClick={() => setMobileOpen(false)}
+                  className="
+                    mt-4 inline-flex items-center gap-2
+                    px-6 py-3 rounded-full
+                    gradient-neon text-void font-bold text-sm
+                    glow-neon
+                  "
+                >
+                  Download CV
+                </a>
+              </motion.li>
+            </ul>
           </motion.div>
         )}
       </AnimatePresence>

@@ -1,33 +1,33 @@
-import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import TiltCard from "./TiltCard";
 
-/* 🎨 Accent map — same pattern as Skills */
+/* 🎨 Accent map */
 const accentStyles = {
   electric: {
     text: "text-electric",
     border: "border-electric/30",
     bg: "bg-electric/5",
-    glow: "hover:glow-electric-soft",
+    glow: "hover-glow-electric-soft",
     tag: "border-electric/20 text-electric/90",
-    button: "border-electric/40 text-electric hover:glow-electric-soft",
+    button: "border-electric/40 text-electric hover-glow-electric-soft",
     number: "text-electric",
   },
   neon: {
     text: "text-neon",
     border: "border-neon/30",
     bg: "bg-neon/5",
-    glow: "hover:glow-neon",
+    glow: "hover-glow-neon",
     tag: "border-neon/20 text-neon/90",
-    button: "border-neon/40 text-neon hover:glow-neon",
+    button: "border-neon/40 text-neon hover-glow-neon",
     number: "text-neon",
   },
   steel: {
     text: "text-steel",
     border: "border-steel/30",
     bg: "bg-steel/5",
-    glow: "hover:glow-navy",
+    glow: "hover-glow-navy",
     tag: "border-steel/20 text-steel/90",
-    button: "border-steel/40 text-steel hover:glow-navy",
+    button: "border-steel/40 text-steel hover-glow-navy",
     number: "text-steel",
   },
 };
@@ -45,7 +45,7 @@ export default function ProjectCard({ project, index = 1, compact = false }) {
       `}
       maxTilt={compact ? 6 : 8}
     >
-      {/* ============ PROJECT PREVIEW ============ */}
+      {/* ============ PREVIEW AREA ============ */}
       <div
         className={`
           relative ${compact ? "h-32" : "h-40 md:h-48"}
@@ -55,27 +55,45 @@ export default function ProjectCard({ project, index = 1, compact = false }) {
           overflow-hidden
         `}
       >
-        {/* 🎨 Diagonal grid pattern */}
+        {/* 🎨 Grid pattern */}
         <div
           className="absolute inset-0 opacity-20"
           style={{
             backgroundImage: `
-              linear-gradient(${project.accent === "neon" ? "#00D9FF" : project.accent === "electric" ? "#38BDF8" : "#60A5FA"}22 1px, transparent 1px),
-              linear-gradient(90deg, ${project.accent === "neon" ? "#00D9FF" : project.accent === "electric" ? "#38BDF8" : "#60A5FA"}22 1px, transparent 1px)
+              linear-gradient(${
+                project.accent === "neon"
+                  ? "#00D9FF"
+                  : project.accent === "electric"
+                  ? "#38BDF8"
+                  : "#60A5FA"
+              }22 1px, transparent 1px),
+              linear-gradient(90deg, ${
+                project.accent === "neon"
+                  ? "#00D9FF"
+                  : project.accent === "electric"
+                  ? "#38BDF8"
+                  : "#60A5FA"
+              }22 1px, transparent 1px)
             `,
             backgroundSize: "24px 24px",
           }}
         />
 
-        {/* 💡 Accent glow blob */}
+        {/* 🌫️ Soft glow blob */}
         <div
           className={`
             absolute w-32 h-32 rounded-full blur-3xl opacity-40
-            ${project.accent === "neon" ? "bg-neon" : project.accent === "electric" ? "bg-electric" : "bg-steel"}
+            ${
+              project.accent === "neon"
+                ? "bg-neon"
+                : project.accent === "electric"
+                ? "bg-electric"
+                : "bg-steel"
+            }
           `}
         />
 
-        {/* 🔢 Big project number */}
+        {/* 🔢 Project number */}
         <span
           className={`
             relative z-10 font-mono-tech font-bold
@@ -104,7 +122,15 @@ export default function ProjectCard({ project, index = 1, compact = false }) {
 
       {/* ============ CONTENT ============ */}
       <div className={`p-5 ${compact ? "md:p-5" : "md:p-6"} flex flex-col flex-1`}>
-        {/* 🏷️ Title */}
+
+        {/* 🏷️ Category label */}
+        {project.category && (
+          <p className={`text-[10px] font-mono-tech tracking-widest uppercase mb-2 ${style.text}`}>
+            {project.category}
+          </p>
+        )}
+
+        {/* 📛 Title */}
         <h3
           className={`
             font-bold text-white mb-3 leading-tight
@@ -145,14 +171,29 @@ export default function ProjectCard({ project, index = 1, compact = false }) {
           )}
         </div>
 
-        {/* 🔗 Actions */}
-        <div className="flex gap-2 mt-auto">
+        {/* 🔗 Actions — stacked */}
+        <div className="flex flex-col gap-2 mt-auto">
+          <Link
+            to={`/projects/${project.slug}`}
+            className="
+              w-full flex items-center justify-center gap-2
+              px-4 py-2.5 rounded-full
+              gradient-neon text-void font-bold
+              text-xs
+              glow-neon hover-glow-neon-strong
+              transition-all duration-300
+              hover:scale-[1.02]
+            "
+          >
+            View Project →
+          </Link>
+
           <a
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
             className={`
-              flex-1 flex items-center justify-center gap-2
+              w-full flex items-center justify-center gap-2
               px-4 py-2.5 rounded-full
               glass border
               text-xs font-medium
@@ -164,28 +205,10 @@ export default function ProjectCard({ project, index = 1, compact = false }) {
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 .3a12 12 0 00-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7 0-.7 0-.7 1.2.1 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.2-3.1-.2-.3-.5-1.5 0-3 0 0 1-.3 3.4 1.2a11.5 11.5 0 016.2 0c2.4-1.5 3.4-1.2 3.4-1.2.5 1.5.2 2.7 0 3 .7.8 1.2 1.9 1.2 3.1 0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0012 .3z" />
             </svg>
-            View Code
+            GitHub
           </a>
-
-          {project.demo && (
-            <a
-              href={project.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`
-                flex-1 flex items-center justify-center gap-2
-                px-4 py-2.5 rounded-full
-                gradient-neon text-void font-bold
-                text-xs
-                glow-neon hover:glow-neon-strong
-                transition-all duration-300
-                hover:scale-[1.02]
-              `}
-            >
-              🚀 Live Demo
-            </a>
-          )}
         </div>
+
       </div>
     </TiltCard>
   );

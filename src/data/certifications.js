@@ -2,7 +2,7 @@ export const certifications = {
   earned: [
     {
       code: "AZ-900",
-      name: "Microsoft Azure Fundamentals",
+      name: "Microsoft Certified: Azure Fundamentals",
       issuer: "Microsoft",
       issued: "September 2026",
       credentialId: null,

@@ -40,16 +40,16 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+    transition: { staggerChildren: 0.12, delayChildren: 0.15 },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 16 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: { duration: 0.5, ease: "easeOut" },
   },
 };
 
@@ -59,10 +59,8 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden"
+      className="relative min-h-screen flex items-center pt-32 pb-20"
     >
-      <Particles />
-
       <Container>
         <motion.div
           variants={containerVariants}
@@ -73,29 +71,25 @@ export default function Hero() {
           {/* ================= LEFT SIDE - TEXT ================= */}
           <div className="space-y-6 text-center md:text-left">
 
-            {/* 👋 Greeting */}
             <motion.p
               variants={itemVariants}
-              className="text-electric font-mono-tech text-sm md:text-base tracking-wider"
+              className="text-electric font-mono-tech text-sm tracking-wider"
             >
               <span className="text-neon">$</span> whoami
             </motion.p>
 
-            {/* 🎭 Name — ALL CAPS + strong glow */}
-            {/* 🎭 Name — ALL CAPS + strong glow */}
-              <motion.h1
-                variants={itemVariants}
-                className="text-5xl md:text-7xl font-black leading-[0.95] tracking-tight uppercase"
-              >
-                <span className="text-gradient-neon text-glow-neon block">
-                  {personal.firstName}
-                </span>
-                <span className="text-white text-glow-white block">
-                  {personal.lastName}
-                </span>
-              </motion.h1>
+            <motion.h1
+              variants={itemVariants}
+              className="text-5xl md:text-7xl font-black leading-[0.95] tracking-tight uppercase"
+            >
+              <span className="text-gradient-neon block">
+                {personal.firstName}
+              </span>
+              <span className="text-white text-glow-white block">
+                {personal.lastName}
+              </span>
+            </motion.h1>
 
-            {/* ⌨️ Typewriter */}
             <motion.h2
               variants={itemVariants}
               className="text-2xl md:text-3xl font-semibold text-electric h-10"
@@ -104,7 +98,6 @@ export default function Hero() {
               <span className="text-neon animate-pulse">|</span>
             </motion.h2>
 
-            {/* 📝 Tagline */}
             <motion.p
               variants={itemVariants}
               className="text-gray-400 text-base md:text-lg max-w-xl mx-auto md:mx-0 leading-relaxed"
@@ -112,7 +105,6 @@ export default function Hero() {
               {personal.tagline}
             </motion.p>
 
-            {/* 🎯 CTA Buttons */}
             <motion.div
               variants={itemVariants}
               className="flex flex-wrap gap-4 justify-center md:justify-start pt-2"
@@ -121,29 +113,28 @@ export default function Hero() {
                 href="#projects"
                 className="
                   gradient-neon text-void font-bold
-                  px-8 py-3 rounded-full
+                  px-7 py-3 rounded-full
                   glow-neon hover-glow-neon-strong
                   transition-all duration-300
-                  hover:scale-105
+                  hover:scale-[1.03]
                 "
               >
-                🚀 View My Work
+                View Projects
               </a>
               <a
                 href="#contact"
                 className="
-                  glass border-neon text-neon font-bold
-                  px-8 py-3 rounded-full
+                  glass border border-neon/40 text-neon font-medium
+                  px-7 py-3 rounded-full
                   hover-glow-neon
                   transition-all duration-300
-                  hover:scale-105
+                  hover:scale-[1.03]
                 "
               >
-                📬 Get In Touch
+                Get In Touch
               </a>
             </motion.div>
 
-            {/* 💙 Social Icons */}
             <motion.div
               variants={itemVariants}
               className="flex gap-4 justify-center md:justify-start pt-4"
@@ -157,7 +148,7 @@ export default function Hero() {
                   title={social.name}
                   className="
                     w-11 h-11 rounded-full
-                    glass border-electric/30
+                    glass border border-electric/20
                     flex items-center justify-center
                     text-lg
                     hover:border-neon hover-glow-neon hover:scale-110
@@ -178,19 +169,13 @@ export default function Hero() {
           >
             <div className="relative w-72 h-72 md:w-96 md:h-96">
 
-              {/* 💡 Rotating outer ring */}
-              <div className="absolute inset-0 rounded-full border-2 border-neon/30 animate-[spin_20s_linear_infinite]" />
+              {/* 🌫️ Soft glow behind frame */}
+              <div className="absolute inset-8 rounded-full bg-neon/10 blur-3xl" />
 
-              {/* 💡 Rotating inner ring (opposite direction) */}
-              <div className="absolute inset-4 rounded-full border border-electric/40 animate-[spin_15s_linear_infinite_reverse]" />
-
-              {/* 🌫️ Glow behind the frame */}
-              <div className="absolute inset-8 rounded-full bg-neon/20 blur-3xl animate-pulse" />
-
-              {/* 🖼️ The circular frame with Azure logo */}
+              {/* 🖼️ Clean circular frame */}
               <div className="
-                absolute inset-12 rounded-full overflow-hidden
-                border-2 border-neon
+                absolute inset-12 rounded-full
+                border border-neon/40
                 glow-neon
                 bg-gradient-to-br from-void via-charcoal to-navy
                 flex items-center justify-center
@@ -201,21 +186,20 @@ export default function Hero() {
                   className="
                     w-32 h-32 md:w-40 md:h-40
                     object-contain
-                    drop-shadow-[0_0_20px_rgba(0,217,255,0.5)]
                   "
                 />
               </div>
 
-              {/* ⚡ Status badge — CENTERED at bottom */}
+              {/* ⚡ Status badge — centered at bottom */}
               <div className="
-                absolute left-1/2 -translate-x-1/2 bottom-0
-                glass border-neon rounded-full
+                absolute left-1/2 -translate-x-1/2 bottom-2
+                glass border border-neon/40 rounded-full
                 px-4 py-2
                 flex items-center gap-2
                 text-xs font-mono-tech text-neon
                 whitespace-nowrap
               ">
-                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-green-400" />
                 available for work
               </div>
 
@@ -225,35 +209,5 @@ export default function Hero() {
         </motion.div>
       </Container>
     </section>
-  );
-}
-
-/* 🌊 Floating particles */
-function Particles() {
-  const particles = Array.from({ length: 20 }, (_, i) => ({
-    id: i,
-    left: Math.random() * 100,
-    top: Math.random() * 100,
-    delay: Math.random() * 5,
-    duration: 8 + Math.random() * 10,
-    size: 1 + Math.random() * 2,
-  }));
-
-  return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
-      {particles.map((p) => (
-        <span
-          key={p.id}
-          className="absolute rounded-full bg-neon/40"
-          style={{
-            left: `${p.left}%`,
-            top: `${p.top}%`,
-            width: `${p.size}px`,
-            height: `${p.size}px`,
-            animation: `floatUp ${p.duration}s ease-in-out ${p.delay}s infinite`,
-          }}
-        />
-      ))}
-    </div>
   );
 }
